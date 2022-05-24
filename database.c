@@ -34,7 +34,7 @@ void Sort_DB(char *type){
 }
 
 //output the database into a file
-void File_IO_DB(){
+void File_Output_DB(){
   FILE* fp = fopen("Patient information.txt", "w");
   
   if(fp == NULL)
