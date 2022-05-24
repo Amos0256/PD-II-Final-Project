@@ -2,8 +2,8 @@
 #include "database.h"
 #include "myDS.h"
 
-Node *first_DB = NULL;
-Node *last_DB = NULL;
+Node* first_DB = NULL;
+Node* last_DB = NULL;
 int data_num;
 
 //add the data into database
@@ -29,8 +29,24 @@ void Search_DB(Inform patient){
 }
 
 //sort the database by chart No.
-void Sort_DB(char *type){
+void Sort_DB(char* type){
   InsertionSort(&first_DB);
+}
+
+//input the data from a file
+
+void File_Input_DB(){
+  FILE* fp = fopen("Input.txt", "r");
+  Inform input;
+
+  if(fp == NULL)
+    fprintf(stderr, "Open file failed\n");
+  else{
+    while(fscanf(fp, "%s %d %f %d", input.name, &input.age, &input.weight, input.situation) != EOF)
+      Add_DB(input);
+  }
+
+  fclose(fp);
 }
 
 //output the database into a file
