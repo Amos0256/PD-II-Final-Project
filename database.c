@@ -42,7 +42,7 @@ void File_Input_DB(){
   if(fp == NULL)
     fprintf(stderr, "Open file failed\n");
   else{
-    while(fscanf(fp, "%s %d %f %d", input.name, &input.age, &input.weight, input.situation) != EOF)
+    while(fscanf(fp, "%s %d %f %s", input.name, &input.age, &input.weight, input.situation) != EOF)
       Add_DB(input);
   }
 
