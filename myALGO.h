@@ -9,19 +9,20 @@
 
 typedef struct{
   Inform patient;
-  QueueNode* next;
+  QueueNode *next;
+  QueueNode *prev;
 }QueueNode;
 
 typedef struct{
   int num;
-  QueueNode* first;
-  QueueNode* last;
+  QueueNode *first;
+  QueueNode *last;
 }HeadNode;
 
-int Cmp_age(const void* a, const void* b);
-int Cmp_weight(const void* a, const void* b);
-int Cmp_situ(const void* a, const void* b);
-int Situation_value(char* situ);
+int Cmp_age(const void *a, const void *b);
+int Cmp_weight(const void *a, const void *b);
+int Cmp_situ(const void *a, const void *b);
+int Situation_value(char *situ);
 int Judge(int r1, int r2);
 void Select_room(Inform patient);
 void Push_room(HeadNode room, Inform patient);

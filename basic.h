@@ -18,7 +18,7 @@ typedef struct{
 
 typedef struct{
   Inform field;
-  struct Node* next;
+  struct Node *next;
 }Node;
 
 #endif

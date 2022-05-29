@@ -2,7 +2,7 @@
 #include "myDS.h"
 
 //create patient informations (input)
-void Create(Node** first, Node** last){
+void Create(Node **first, Node **last){
   srand(time(NULL));
   Inform input;
   scanf("%d %s %s %f", &input.age, input.name, input.situation, &input.weight);
@@ -12,8 +12,8 @@ void Create(Node** first, Node** last){
 
 //seen the new patient informations as a node
 //add new node to linked list 
-void Add(Node** head, Node** last, Inform patient){
-  Node* new_node = (Node*)malloc(sizeof(Node));
+void Add(Node **head, Node **last, Inform patient){
+  Node *new_node = (Node *)malloc(sizeof(Node));
   //copy the patient informations into node
   new_node->field.age = patient.age;
   strcpy(new_node->field.name, patient.name);
@@ -29,7 +29,7 @@ void Add(Node** head, Node** last, Inform patient){
   }
   //not first node
   else{
-    Node* temp = *last;
+    Node *temp = *last;
     temp->next = new_node;
     *last = new_node;
   }
@@ -37,9 +37,9 @@ void Add(Node** head, Node** last, Inform patient){
 
 //delete the node
 //patient leave the hospital
-void Delete(Node* head, char* name){
-  Node* cur = head;
-  Node* prev;
+void Delete(Node *head, char *name){
+  Node *cur = head;
+  Node *prev;
   while(cur != NULL && (strcmp(cur->field.name, name) != 0)){
     prev = cur;
     cur = cur->next;
@@ -54,8 +54,8 @@ void Delete(Node* head, char* name){
 }
 
 //search the node by giving the patient name
-Node* Search(Node* head, char* name){
-  Node* cur = head;
+Node *Search(Node *head, char *name){
+  Node *cur = head;
   while(cur->next != NULL){
     if(strcmp(cur->field.name, name) == 0)
       return cur;
@@ -65,7 +65,7 @@ Node* Search(Node* head, char* name){
 }
 
 //print the patient informations / node
-void Print(Node* node){
+void Print(Node *node){
   if(node == NULL)
     printf("Patient Not Exist!!!\n");
   else{
@@ -78,8 +78,8 @@ void Print(Node* node){
 }
 
 //print all of patient informations / node
-void Print_ALL(Node* head){
-  Node* cur = head;
+void Print_ALL(Node *head){
+  Node *cur = head;
   while(cur != NULL){
     Print(cur);
     cur = cur->next;
@@ -88,22 +88,22 @@ void Print_ALL(Node* head){
 }
 
 //delete all of patient informations / node
-void Delete_ALL(Node* head){
-  Node* cur = head;
+void Delete_ALL(Node *head){
+  Node *cur = head;
   while(cur != NULL){
-    Node* temp = cur;
+    Node *temp = cur;
     cur = cur->next;
     free(temp);
   }
 }
 
 //linked list insertion sort
-void InsertionSort(Node** head){
+void InsertionSort(Node **head){
   //sorted linked list
-  Node* sorted = NULL;
-  Node* cur = *head;
+  Node *sorted = NULL;
+  Node *cur = *head;
   while(cur != NULL){
-    Node* next = cur->next;
+    Node *next = cur->next;
     Insert(cur, &sorted);
     cur = next;
   }
@@ -111,7 +111,7 @@ void InsertionSort(Node** head){
 }
 
 //insert function
-void Insert(Node* node, Node** sorted){
+void Insert(Node *node, Node **sorted){
   //1st insertion sort or number of node is larger than first node of sorted
   if(*sorted == NULL || ((*sorted)->field.number >= node->field.number)){
     node->next = *sorted;
@@ -119,8 +119,8 @@ void Insert(Node* node, Node** sorted){
   }
   //number of node is smaller than first node
   else{
-    Node* cur = *sorted;
-    Node* prev;
+    Node *cur = *sorted;
+    Node *prev;
     //find the correct place
     while(cur != NULL && cur->field.number < node->field.number){
       prev = cur;

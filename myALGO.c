@@ -6,9 +6,9 @@ HeadNode room[MAX_ROOM];
 
 /*     sort compare functions     */
 //AGE大到小，若一樣，病情1到5
-int Cmp_age(const void* a, const void* b){
-  Inform* p1 = (Inform*)a;
-  Inform* p2 = (Inform*)b;
+int Cmp_age(const void *a, const void *b){
+  Inform *p1 = (Inform *)a;
+  Inform *p2 = (Inform *)b;
   if(p1->age == p2->age){
     return MAX_Cmpfunc(p1->situation_value, p2->situation_value);
   }
@@ -16,9 +16,9 @@ int Cmp_age(const void* a, const void* b){
 }
 
 //WEIGHT大到小，若一樣，AGE大到小
-int Cmp_weight(const void* a, const void* b){
-  Inform* p1 = (Inform*)a;
-  Inform* p2 = (Inform*)b;
+int Cmp_weight(const void *a, const void *b){
+  Inform *p1 = (Inform *)a;
+  Inform *p2 = (Inform *)b;
   if(p1->weight == p2->weight){
     return MIN_Cmpfunc(p1->age, p2->age);
   }
@@ -26,9 +26,9 @@ int Cmp_weight(const void* a, const void* b){
 }
 
 //SITU小到大，若一樣，WEIGHT大到小
-int Cmp_situation(const void* a, const void* b){
-  Inform* p1 = (Inform*)a;
-  Inform* p2 = (Inform*)b;
+int Cmp_situation(const void *a, const void *b){
+  Inform *p1 = (Inform *)a;
+  Inform *p2 = (Inform *)b;
   if(p1->situation_value == p2->situation_value){
     return MIN_Cmpfunc(p1->weight, p2->weight);
   }
@@ -36,7 +36,7 @@ int Cmp_situation(const void* a, const void* b){
 }
 
 /*    clinic select     */
-int Situation_value(char* situ){
+int Situation_value(char *situ){
   if(strcmp(situ, "PANDMIC") == 0)
     return 0;
   else if(strcmp(situ, "CARACCIDENT") == 0)
@@ -100,21 +100,27 @@ void Select_room(Inform patient){
 }
 
 void Push_room(HeadNode room, Inform patient){
-  QueueNode* new_node = (QueueNode*)malloc(sizeof(QueueNode));
+  QueueNode *new_node = (QueueNode *)malloc(sizeof(QueueNode));
   new_node->patient = patient;
   new_node->next = NULL;
+  new_node->prev = NULL;
 
   if(room.num == 0){
     room.first = new_node;
     room.last = new_node;
   }
   else{
-    QueueNode* temp = room.last;
+    QueueNode *temp = room.last;
     temp->next = new_node;
+    new_node->prev = temp;
     room.last = new_node;
   }
   room.num++;
 }
 
 void Pop_room(HeadNode room){
+  QueueNode *temp = room.last;
+  room.last = room.last->prev;
+  room.last->next = NULL;
+  free(temp);
 }
