@@ -9,14 +9,14 @@
 
 typedef struct{
   Inform patient;
-  QueueNode *next;
-  QueueNode *prev;
+  struct QueueNode *next;
+  struct QueueNode *prev;
 }QueueNode;
 
 typedef struct{
   int num;
-  QueueNode *first;
-  QueueNode *last;
+  struct QueueNode *first;
+  struct QueueNode *last;
 }HeadNode;
 
 int Cmp_age(const void *a, const void *b);
