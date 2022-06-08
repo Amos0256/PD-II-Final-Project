@@ -58,8 +58,11 @@ int Situation_value(char *situ){
 }
 
 void Room_init(HeadNode *room){
-  for(int i = 0; i < MAX_ROOM; i++)
-    room[i] = {.num = 0, .first = NULL, .last = NULL};
+  for(int i = 0; i < MAX_ROOM; i++){
+    room[i].num = 0;
+    room[i].first = NULL;
+    room[i].last = NULL;
+  }
 }
 
 int Judge(int r1, int r2){
