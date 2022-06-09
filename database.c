@@ -4,18 +4,18 @@
 
 Node *first_DB = NULL;
 Node *last_DB = NULL;
-int data_num;
+int num_DB = 0;
 
 //add the data into database
 void Add_DB(Inform patient){
   Add(&first_DB, &last_DB, patient);
-  data_num++;
+  num_DB++;
 }
 
 //delete the data from database
 void Delete_DB(Inform patient){
   Delete(first_DB, patient.name);
-  data_num--;
+  num_DB--;
 }
 
 //traverse the database
@@ -42,8 +42,10 @@ void File_Input_DB(){
   if(fp == NULL)
     fprintf(stderr, "Open file failed\n");
   else{
-    while(fscanf(fp, "%s %d %f %s", input.name, &input.age, &input.weight, input.situation) != EOF)
+    while(fscanf(fp, "%s %d %f %s", input.name, &input.age, &input.weight, input.situation) != EOF){
+      input.number = ++data_num;
       Add_DB(input);
+    }
   }
 
   fclose(fp);

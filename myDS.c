@@ -3,12 +3,14 @@
 
 //create patient informations (input)
 void Create(Node **first, Node **last){
-  srand(time(NULL));
+  //srand(time(NULL));
   Inform input;
   scanf("%d %s %s %f", &input.age, input.name, input.situation, &input.weight);
-  input.number = rand() % (100 + 1);
+  //input.number = rand() % (100 + 1);
+  input.number = ++num;
   Add(first, last, input);
 }
+
 
 //seen the new patient informations as a node
 //add new node to linked list 

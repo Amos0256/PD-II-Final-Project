@@ -21,4 +21,7 @@ typedef struct{
   struct Node *next;
 }Node;
 
+//data num
+int num = 0;
+
 #endif

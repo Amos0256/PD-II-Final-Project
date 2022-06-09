@@ -1,8 +1,8 @@
 #include "basic.h"
 #include "myALGO.h"
 
-//room is a queue
-HeadNode room[MAX_ROOM];
+//clinic is a queue
+HeadNode clinic[MAX_ROOM];
 
 /*     sort compare functions     */
 //AGE大到小，若一樣，病情1到5
@@ -26,7 +26,7 @@ int Cmp_weight(const void *a, const void *b){
 }
 
 //SITU小到大，若一樣，WEIGHT大到小
-int Cmp_situation(const void *a, const void *b){
+int Cmp_situ(const void *a, const void *b){
   Inform *p1 = (Inform *)a;
   Inform *p2 = (Inform *)b;
   if(p1->situation_value == p2->situation_value){
@@ -57,14 +57,6 @@ int Situation_value(char *situ){
   */
 }
 
-void Room_init(HeadNode *room){
-  for(int i = 0; i < MAX_ROOM; i++){
-    room[i].num = 0;
-    room[i].first = NULL;
-    room[i].last = NULL;
-  }
-}
-
 int Judge(int r1, int r2){
   /*
   #if PANDMIC_MODE
@@ -80,6 +72,8 @@ int Judge(int r1, int r2){
 void Select_room(Inform patient){
   int value = Situation_value(patient.situation);
   int clinic_num;
+  
+  //get clinic room number
   switch (value){
   case 0:
     clinic_num = 0;
@@ -99,6 +93,23 @@ void Select_room(Inform patient){
   case 5:
     clinic_num = Judge(5, 1); 
     break;
+  }
+
+  //push queue
+  Push_room(clinic[clinic_num], patient);
+  //pop queue
+  for(int i = 0; i < MAX_ROOM; i++){
+    if(clinic[i].num != 0)
+      Pop_room(clinic[i]);
+  }
+
+}
+
+void Room_init(){
+  for(int i = 0; i < MAX_ROOM; i++){
+    clinic[i].num = 0;
+    clinic[i].first = NULL;
+    clinic[i].last = NULL;
   }
 }
 
@@ -126,4 +137,5 @@ void Pop_room(HeadNode room){
   room.last = room.last->prev;
   room.last->next = NULL;
   free(temp);
+  room.num--;
 }

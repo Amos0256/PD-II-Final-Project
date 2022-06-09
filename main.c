@@ -3,27 +3,86 @@
 #include "myALGO.h"
 #include "myDS.h"
 
-#include <stdio.h>
-#include <stdlib.h>
+Node *first = NULL;
+Node *last = NULL;
+extern Node *first_DB;
+extern Node *last_DB;
+extern num_DB;
+Inform data[MAX_DATA];
 
-void input_array(int num, Inform sort[]){
-    for(int i=0; i<num; i++){
-        scanf("%s %d %f %d %s %d", &sort[i].name, &sort[i].age, &sort[i].weight, &sort[i].number, &sort[i].situation, &sort[i].situation_value);
+int main(){
+  int mode;
+  fprintf(stderr, "[1]input by terminal [2]input by file:\n");
+  scanf("%d", &mode);
+  
+  //terminal input
+  if(mode == 1){
+    fprintf(stderr, "please input number of input\n");
+    scanf("%d", &num);
+    
+    for(int i = 0; i < num; i++){
+      //linked list
+      Create(&first, &last);
+
+      //copy into data
+      data[i].age = last->field.age;
+      strcpy(data[i].name, last->field.name);
+      strcpy(data[i].situation, last->field.situation);
+      data[i].weight = last->field.weight;
+      data[i].number = last->field.number;
+
+      //linked list database
+      Add_DB(data[i]);
     }
-    //sort
-    int sort_class;
-    printf("[1]age [2]weight [3]situation:\n");
-    scanf("%d", &sort_class);
-    if(sort_class==1){
-        qsort(sort, 100000, sizeof(sort[0]), Cmp_age);
+  }
+  //file input
+  else if(mode == 2){
+    //linked list database
+    File_Input_DB();
+
+    //linked list
+    Add(&first, &last, last_DB->field);
+
+    num = num_DB;
+    //copy into data
+    for(int i = 0; i < num; i++){
+      data[i].age = last->field.age;
+      strcpy(data[i].name, last->field.name);
+      strcpy(data[i].situation, last->field.situation);
+      data[i].weight = last->field.weight;
+      data[i].number = last->field.number;
     }
-    else if(sort_class==2){
-        qsort(sort, 100000, sizeof(sort[0]), Cmp_weight);
-    }
-    else if(sort_class==3){
-        qsort(sort, 100000, sizeof(sort[0]), Cmp_situ);
-    }
+  }
+
+  //sort priority
+  int priority;
+  fprintf(stderr, "[1]age [2]weight [3]situation:\n");
+  scanf("%d", &priority);
+  if(priority == 1)
+    qsort(data, num, sizeof(Inform), Cmp_age);
+  else if(priority == 2)
+    qsort(data, num, sizeof(Inform), Cmp_weight);
+  else if(priority == 3)
+    qsort(data, num, sizeof(Inform), Cmp_situ);
+
+  //clinic select
+  Room_init();
+  for(int i = 0; i < num; i++)
+    Select_room(data[i]);
+  
+  //output
+  int output;
+  fprintf(stderr, "[1]database [2]clinic list:\n");
+  scanf("%d", &output);
+
+  if(output == 1)
+    File_Output_DB();
+  else if(output == 2)
+    Print_ALL(head);
+
+  return 0;
 }
+
 /*
 void linked_list(Node* first, Node* head, int num){
     //Amos help!!!
@@ -33,33 +92,3 @@ void linked_list(Node* first, Node* head, int num){
     }
     InsertionSort(&head);
 }*/
-int main(){
-	int input, output, num;
-    Inform sort[100000];
-    Node* first = NULL;
-    Node* head = NULL;
-    printf("[1]input by terminal [2]input by file:\n");
-    scanf("%d", &input);
-    scanf("%d", &num);
-	if(input==1){
-        input_array(num, sort);
-    }
-    else if(input==2){
-        File_Input_DB();
-    }
-    //linked_list(first, head);
-    for(int i=0; i<num; i++){
-        Select_room(sort[i]);
-    }
-    
-    printf("[1]database [2]clinic list:\n");
-    scanf("%d", &output);
-    if(output==1){
-        File_Output_DB();
-    }
-    else if(output==2){
-        Print_ALL(head);
-    }
-
-	return 0;	
-}
