@@ -78,17 +78,8 @@ int main(){
   if(output == 1)
     File_Output_DB();
   else if(output == 2)
-    Print_ALL(head);
+    Print_ALL(first_DB);
 
   return 0;
 }
 
-/*
-void linked_list(Node* first, Node* head, int num){
-    //Amos help!!!
-    for(int i=0; i<num; i++){
-        Node* tmp = malloc(sizeof(Node));
-        Create(first, head);
-    }
-    InsertionSort(&head);
-}*/
