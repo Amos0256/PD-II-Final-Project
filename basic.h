@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#define MAX_SIZE 10
+#define MAX_SIZE 100
 
 typedef struct{
   char name[20];
