@@ -99,6 +99,7 @@ void Delete_ALL(Node *head){
   }
 }
 
+//by Amos
 //linked list insertion sort
 void InsertionSort(Node **head){
   //sorted linked list

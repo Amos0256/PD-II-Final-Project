@@ -6,6 +6,7 @@ Node *first_DB = NULL;
 Node *last_DB = NULL;
 int num_DB = 0;
 
+//by Amos
 //add the data into database
 void Add_DB(Inform patient){
   Add(&first_DB, &last_DB, patient);

@@ -35,6 +35,7 @@ int Cmp_situ(const void *a, const void *b){
   return MAX_Cmpfunc(p1->situation_value, p2->situation_value);
 }
 
+//by Amos
 /*    clinic select     */
 int Situation_value(char *situ){
   if(strcmp(situ, "PANDMIC") == 0)
