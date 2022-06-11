@@ -6,6 +6,15 @@
 
 In this program, you can input the information by themself or by FILE INPUT, and these information will be used to build an array and be stored in the database. Then, user can choose to sort the array in order of age, weight or situation, whatever they want. After sorting the array, this array will be used to build a linked list called waiting list. The patients will be distributed to different clinics in the order of waiting list. And the patients who are in the clinic will form a queue called clinic list, which is used to keep track of the number of patients in the clinic.User can choose to output the database, waiting list or clinic list, it depends on which list the user wants to get access to.
 
-* Input Format
-  
-* Output Format
+* I/O Format
+  |Input                  |Output                 |
+  |-----------------------|:----------------------|
+  |1                      |20 Alen PREGNANT 70    |
+  |5                      |25 Zhejia SICK 60      |
+  |20 Amos PANDMIC 40     |18 Erica CARACCIDENT 50|
+  |20 Alen PREGNANT 70    |20 Amos PANDMIC 40     |
+  |18 Erica CARACCIDENT 50|                       |
+  |25 Zhejia SICK 60      |                       |
+  |2                      |                       |
+  |2                      |                       |
+    
