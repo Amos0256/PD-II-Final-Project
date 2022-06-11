@@ -135,8 +135,12 @@ void Push_room(HeadNode room, Inform patient){
 
 void Pop_room(HeadNode room){
   QueueNode *temp = room.last;
-  room.last = (room.last)->prev;
-  (room.last)->next = NULL;
+  //room.last pop
+  room.last = temp->prev;
   free(temp);
+
+  temp = room.last;
+  temp->next = NULL;
+  
   room.num--;
 }
