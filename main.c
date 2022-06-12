@@ -14,16 +14,16 @@ int num = 0;
 
 int main(){
   int mode;
-  fprintf(stderr, "[1]input by terminal [2]input by file:\n");
+  fprintf(stderr, "\033[31m[1]input by terminal [2]input by file:\n\033[0m");
   scanf("%d", &mode);
   
   //terminal input
   if(mode == 1){
     int input_num;
-    fprintf(stderr, "please input number of input:\n");
+    fprintf(stderr, "\033[33mplease input number of input:\n\033[0m");
     scanf("%d", &input_num);
     
-    fprintf(stderr, "Age\tName\tSituation\tWeight\n");
+    fprintf(stderr, "\033[32mAge\tName\tSituation\tWeight\n\033[0m");
     for(int i = 0; i < input_num; i++){
       //linked list
       Create(&first, &last);
@@ -65,7 +65,7 @@ int main(){
 
   //sort priority
   int priority;
-  fprintf(stderr, "[1]age [2]weight [3]situation:\n");
+  fprintf(stderr, "\033[36m[1]age [2]weight [3]situation:\n\033[0m");
   scanf("%d", &priority);
   if(priority == 1)
     qsort(data, num, sizeof(Inform), Cmp_age);
@@ -83,16 +83,16 @@ int main(){
     printf("%d\t", clinic[i].num);
   */
 
-  fprintf(stderr, "Check currently clinic? [1] Yes [2] No\n");
+  fprintf(stderr, "\033[34mCheck currently clinic? [1] Yes [2] No\n\033[0m");
   int c;
   scanf("%d", &c);
   if(c == 1){
     for(int i = 0; i < MAX_ROOM; i++){
-      printf("Waiting list of clinic %d:\n", i+1);
+      printf("\033[35mWaiting list of clinic %d:\n\033[0m", i+1);
       int count = 0;
       QueueNode *cur = clinic[i].first;
       while(cur != NULL){
-        printf("%d: %s\n", ++count, cur->patient.name);
+        printf("\033[45m%d: %s\n\033[0m", ++count, cur->patient.name);
         cur = cur->next;
       }
       printf("\n");
@@ -103,7 +103,7 @@ int main(){
   
   //output
   int output;
-  fprintf(stderr, "Output database to [1]file [2]terminal:\n");
+  fprintf(stderr, "\033[35mOutput database to [1]file [2]terminal:\n\033[0m");
   scanf("%d", &output);
 
   if(output == 1)

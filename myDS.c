@@ -71,13 +71,13 @@ Node *Search(Node *head, char *name){
 //print the patient informations / node
 void Print(Node *node){
   if(node == NULL)
-    printf("Patient Not Exist!!!\n");
+    printf("\033[45mPatient Not Exist!!!\n");
   else{
-    printf("Name: %s\n", node->field.name);
-    printf("Age: %d\n", node->field.age);
-    printf("Weight: %.2f\n", node->field.weight);
-    printf("Number: %d\n", node->field.number);
-    printf("Situation: %s\n", node->field.situation);
+    printf("\033[45mName: %s\n\033[0m", node->field.name);
+    printf("\033[45mAge: %d\n\033[0m", node->field.age);
+    printf("\033[45mWeight: %.2f\n\033[0m", node->field.weight);
+    printf("\033[45mNumber: %d\n\033[0m", node->field.number);
+    printf("\033[45mSituation: %s\n\033[0m", node->field.situation);
   }
 }
 
