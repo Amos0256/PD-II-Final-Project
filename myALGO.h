@@ -27,5 +27,6 @@ int Judge(int r1, int r2);
 void Select_room(Inform patient);
 void Push_room(HeadNode room, Inform patient);
 void Pop_room(HeadNode room);
+void Pop_all();
 
 #endif

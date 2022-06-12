@@ -9,6 +9,7 @@ extern Node *first_DB;
 extern Node *last_DB;
 extern num_DB;
 Inform data[MAX_DATA];
+extern HeadNode clinic[MAX_ROOM];
 int num = 0;
 
 int main(){
@@ -22,7 +23,6 @@ int main(){
     fprintf(stderr, "please input number of input:\n");
     scanf("%d", &input_num);
     
-    //fprintf(stderr, "Age\tName\tSituation\tWeight\n");
     fprintf(stderr, "Age\tName\tSituation\tWeight\n");
     for(int i = 0; i < input_num; i++){
       //linked list
@@ -74,16 +74,35 @@ int main(){
   Room_init();
   for(int i = 0; i < num; i++)
     Select_room(data[i]);
+
+  fprintf(stderr, "Check currently clinic? [Y] Yes [N] No\n");
+  char c;
+  c = getchar();
+  if(c == 'Y'){
+    for(int i = 0; i < MAX_ROOM; i++){
+      printf("Waiting list of clinic %d:\n", i+1);
+      QueueNode *cur = clinic[i].first;
+      while(cur != NULL){
+        int count = 0;
+        printf("%d: %s\t", ++count, cur->patient.name);
+        cur = cur->next;
+      }
+      printf("\n");
+    }
+  }
+
+  Pop_all();
   
   //output
   int output;
-  fprintf(stderr, "[1]database [2]clinic list:\n");
+  fprintf(stderr, "Output database to [1]file [2]terminal:\n");
   scanf("%d", &output);
 
   if(output == 1)
     File_Output_DB();
-  else if(output == 2)
+  else if(output == 2){
     Print_ALL(first_DB);
+  }
 
   return 0;
 }

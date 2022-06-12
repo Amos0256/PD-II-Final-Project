@@ -99,11 +99,12 @@ void Select_room(Inform patient){
   //push queue
   Push_room(clinic[clinic_num], patient);
   //pop queue
+  /*
   for(int i = 0; i < MAX_ROOM; i++){
     if(clinic[i].num != 0)
       Pop_room(clinic[i]);
   }
-
+  */
 }
 
 void Room_init(){
@@ -143,4 +144,15 @@ void Pop_room(HeadNode room){
   temp->next = NULL;
   
   room.num--;
+}
+
+void Pop_all(){
+  for(int i = 0; i < MAX_ROOM; i++){
+    QueueNode *cur = clinic[i].first;
+    while(cur != NULL){
+      QueueNode *temp = cur;
+      cur = cur->next;
+      free(temp);
+    }
+  }
 }
