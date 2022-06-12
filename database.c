@@ -44,8 +44,9 @@ void File_Input_DB(){
   if(fp == NULL)
     fprintf(stderr, "Open file failed\n");
   else{
+    int count = 0;
     while(fscanf(fp, "%d %s %s %f", &input.age, input.name, input.situation, &input.weight) != EOF){
-      input.number = ++num;
+      input.number = ++count;
       Add_DB(input);
     }
   }

@@ -50,12 +50,16 @@ int main(){
 
     //printf("num = %d\n", num);
     //copy into data
-    for(int i = 0; i < num; i++){
-      data[i].age = last->field.age;
-      strcpy(data[i].name, last->field.name);
-      strcpy(data[i].situation, last->field.situation);
-      data[i].weight = last->field.weight;
-      data[i].number = last->field.number;
+    Node *cur = first_DB;
+    //printf("%d\n", num);
+    while(cur != NULL){
+      data[num].age = cur->field.age;
+      strcpy(data[num].name, cur->field.name);
+      strcpy(data[num].situation, cur->field.situation);
+      data[num].weight = cur->field.weight;
+      data[num].number = cur->field.number;
+      cur = cur->next;
+      num++;
     }
   }
 
@@ -74,8 +78,10 @@ int main(){
   Room_init();
   for(int i = 0; i < num; i++)
     Select_room(data[i]);
+  /*
   for(int i = 0;i < MAX_ROOM; i++)
     printf("%d\t", clinic[i].num);
+  */
 
   fprintf(stderr, "Check currently clinic? [1] Yes [2] No\n");
   int c;
@@ -83,10 +89,10 @@ int main(){
   if(c == 1){
     for(int i = 0; i < MAX_ROOM; i++){
       printf("Waiting list of clinic %d:\n", i+1);
+      int count = 0;
       QueueNode *cur = clinic[i].first;
       while(cur != NULL){
-        int count = 0;
-        printf("%d: %s\t", ++count, cur->patient.name);
+        printf("%d: %s\n", ++count, cur->patient.name);
         cur = cur->next;
       }
       printf("\n");
