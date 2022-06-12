@@ -9,10 +9,10 @@ In this program, you can input the information by themself or by FILE INPUT, and
 * I/O Format
   |Input                  |Output                 |
   |-----------------------|:----------------------|
-  |1                      |20 Alen PREGNANT 70    |
+  |1                      |20 Allen PREGNANT 70    |
   |4                      |25 Zhejia SICK 60      |
-  |20 Amos PANDMIC 40     |18 Erica CARACCIDENT 50|
-  |20 Allen PREGNANT 70   |20 Amos PANDMIC 40     |
+  |20 Amos PANDEMIC 40     |18 Erica CARACCIDENT 50|
+  |20 Allen PREGNANT 70   |20 Amos PANDEMIC 40     |
   |18 Erica CARACCIDENT 50|                       |
   |25 Zhejia SICK 60      |                       |
   |2                      |                       |
