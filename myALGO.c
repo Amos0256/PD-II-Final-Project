@@ -75,7 +75,7 @@ int Judge(int r1, int r2){
 void Select_room(Inform patient){
   int value = Situation_value(patient.situation);
   int clinic_num;
-  printf("%d\n", value);
+  //printf("%d\n", value);
   //get clinic room number
   switch (value){
   case 0:
