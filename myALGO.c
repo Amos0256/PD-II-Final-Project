@@ -38,7 +38,7 @@ int Cmp_situ(const void *a, const void *b){
 //by Amos
 /*    clinic select     */
 int Situation_value(char *situ){
-  if(strcmp(situ, "PANDMIC") == 0)
+  if(strcmp(situ, "PANDEMIC") == 0)
     return 0;
   else if(strcmp(situ, "CARACCIDENT") == 0)
     return 1;
@@ -80,24 +80,25 @@ void Select_room(Inform patient){
     clinic_num = 0;
     break;
   case 1:
-    clinic_num = Judge(1, 2);
+    clinic_num = Judge(clinic[1].num, clinic[2].num);
     break;
   case 2:
-    clinic_num = Judge(2, 3);
+    clinic_num = Judge(clinic[2].num, clinic[3].num);
     break;
   case 3:
-    clinic_num = Judge(3, 4);
+    clinic_num = Judge(clinic[3].num, clinic[4].num);
     break;
   case 4:
-    clinic_num = Judge(4, 5);
+    clinic_num = Judge(clinic[4].num, clinic[5].num);
     break;
   case 5:
-    clinic_num = Judge(5, 1); 
+    clinic_num = Judge(clinic[5].num, clinic[1].num); 
     break;
   }
 
   //push queue
   Push_room(clinic, clinic_num, patient);
+  clinic[clinic_num].num++;
   //pop queue
   /*
   for(int i = 0; i < MAX_ROOM; i++){
