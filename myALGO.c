@@ -58,43 +58,46 @@ int Situation_value(char *situ){
   */
 }
 
+/*
 int Judge(int r1, int r2){
-  /*
+  
   #if PANDMIC_MODE
-  */
+  
   return MIN_General(r1, r2);
-  /*
+  
   #elif !PANDMIC_MODE
   return MIN_General(MIN_General(r1, r2), 6);
   #endif
-  */
+  
 }
+*/
 
 void Select_room(Inform patient){
   int value = Situation_value(patient.situation);
   int clinic_num;
-  
+  printf("%d\n", value);
   //get clinic room number
   switch (value){
   case 0:
     clinic_num = 0;
     break;
   case 1:
-    clinic_num = Judge(clinic[1].num, clinic[2].num);
+    clinic_num = (clinic[1].num <= clinic[2].num ? 1 : 2);
     break;
   case 2:
-    clinic_num = Judge(clinic[2].num, clinic[3].num);
+    clinic_num = (clinic[2].num <= clinic[3].num ? 2 : 3);
     break;
   case 3:
-    clinic_num = Judge(clinic[3].num, clinic[4].num);
+    clinic_num = (clinic[3].num <= clinic[4].num ? 3 : 4);
     break;
   case 4:
-    clinic_num = Judge(clinic[4].num, clinic[5].num);
+    clinic_num = (clinic[4].num <= clinic[5].num ? 4 : 5);
     break;
   case 5:
-    clinic_num = Judge(clinic[5].num, clinic[1].num); 
+    clinic_num = (clinic[5].num <= clinic[1].num ? 5 : 1); 
     break;
   }
+  //printf("%d\n", clinic_num);
 
   //push queue
   Push_room(clinic, clinic_num, patient);
