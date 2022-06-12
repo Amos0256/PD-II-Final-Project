@@ -18,6 +18,7 @@ int main(){
   
   //terminal input
   if(mode == 1){
+    int input_num;
     fprintf(stderr, "please input number of input:\n");
     scanf("%d", &input_num);
     
