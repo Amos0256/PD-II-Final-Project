@@ -62,7 +62,7 @@ int Judge(int r1, int r2){
   /*
   #if PANDMIC_MODE
   */
-  return MIN(r1, r2);
+  return MIN_General(r1, r2);
   /*
   #elif !PANDMIC_MODE
   return MIN_General(MIN_General(r1, r2), 6);

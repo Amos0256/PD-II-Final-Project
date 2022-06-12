@@ -1,6 +1,8 @@
 #include "basic.h"
 #include "myDS.h"
 
+extern num;
+
 //create patient informations (input)
 void Create(Node **first, Node **last){
   //srand(time(NULL));

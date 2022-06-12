@@ -5,6 +5,7 @@
 Node *first_DB = NULL;
 Node *last_DB = NULL;
 int num_DB = 0;
+extern num;
 
 //by Amos
 //add the data into database

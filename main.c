@@ -9,6 +9,7 @@ extern Node *first_DB;
 extern Node *last_DB;
 extern num_DB;
 Inform data[MAX_DATA];
+int num = 0;
 
 int main(){
   int mode;
