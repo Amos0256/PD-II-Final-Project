@@ -75,10 +75,10 @@ int main(){
   for(int i = 0; i < num; i++)
     Select_room(data[i]);
 
-  fprintf(stderr, "Check currently clinic? [Y] Yes [N] No\n");
-  char c;
-  c = getchar();
-  if(c == 'Y'){
+  fprintf(stderr, "Check currently clinic? [1] Yes [2] No\n");
+  int c;
+  scanf("%d", &c);
+  if(c == 1){
     for(int i = 0; i < MAX_ROOM; i++){
       printf("Waiting list of clinic %d:\n", i+1);
       QueueNode *cur = clinic[i].first;
