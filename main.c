@@ -19,9 +19,11 @@ int main(){
   //terminal input
   if(mode == 1){
     fprintf(stderr, "please input number of input:\n");
-    scanf("%d", &num);
+    scanf("%d", &input_num);
     
-    for(int i = 0; i < num; i++){
+    //fprintf(stderr, "Age\tName\tSituation\tWeight\n");
+    fprintf(stderr, "Age\tName\tSituation\tWeight\n");
+    for(int i = 0; i < input_num; i++){
       //linked list
       Create(&first, &last);
 
@@ -34,6 +36,7 @@ int main(){
 
       //linked list database
       Add_DB(data[i]);
+      //printf("num = %d\n", num);
     }
   }
   //file input
@@ -44,7 +47,7 @@ int main(){
     //linked list
     Add(&first, &last, last_DB->field);
 
-    num = num_DB;
+    printf("num = %d\n", num);
     //copy into data
     for(int i = 0; i < num; i++){
       data[i].age = last->field.age;
