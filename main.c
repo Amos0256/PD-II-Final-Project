@@ -48,7 +48,7 @@ int main(){
     //linked list
     Add(&first, &last, last_DB->field);
 
-    printf("num = %d\n", num);
+    //printf("num = %d\n", num);
     //copy into data
     for(int i = 0; i < num; i++){
       data[i].age = last->field.age;
@@ -74,6 +74,8 @@ int main(){
   Room_init();
   for(int i = 0; i < num; i++)
     Select_room(data[i]);
+  for(int i = 0;i < MAX_ROOM; i++)
+    printf("%d\t", clinic[i].num);
 
   fprintf(stderr, "Check currently clinic? [1] Yes [2] No\n");
   int c;

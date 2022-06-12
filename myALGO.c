@@ -97,7 +97,12 @@ void Select_room(Inform patient){
   }
 
   //push queue
-  Push_room(clinic[clinic_num], patient);
+  printf("%d %s\n", clinic_num, patient.name);
+  QueueNode *first_Q = clinic[clinic_num].first;
+  QueueNode *last_Q = clinic[clinic_num].last;
+  printf("first_Q: %p\tlast_Q: %p\n", first_Q, last_Q);
+  Push_room(&first_Q, &last_Q, patient);
+  clinic[clinic_num].num++;
   //pop queue
   /*
   for(int i = 0; i < MAX_ROOM; i++){
@@ -115,23 +120,35 @@ void Room_init(){
   }
 }
 
-void Push_room(HeadNode room, Inform patient){
+void Push_room(QueueNode **first_Q, QueueNode **last_Q, Inform patient){
   QueueNode *new_node = (QueueNode *)malloc(sizeof(QueueNode));
-  new_node->patient = patient;
+  //new_node->patient = patient;
+  new_node->patient.age = patient.age;
+  strcpy(new_node->patient.name, patient.name);
+  new_node->patient.number = patient.number;
+  strcpy(new_node->patient.situation, patient.situation);
+  new_node->patient.situation_value = patient.situation_value;
+  new_node->patient.weight = patient.weight;
   new_node->next = NULL;
   new_node->prev = NULL;
 
-  if(room.num == 0){
-    room.first = new_node;
-    room.last = new_node;
+  if(!*first_Q){
+    *first_Q = new_node;
+    *last_Q = new_node;
   }
   else{
-    QueueNode *temp = room.last;
+    QueueNode *temp = *last_Q;
     temp->next = new_node;
     new_node->prev = temp;
-    room.last = new_node;
+    *last_Q = new_node;
   }
-  room.num++;
+
+  QueueNode *cur = *first_Q;
+  while(cur != NULL){
+    printf("%s\t", cur->patient.name);
+    cur = cur->next;
+  }
+  printf("\n");
 }
 
 void Pop_room(HeadNode room){
